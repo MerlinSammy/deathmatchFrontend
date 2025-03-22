@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import dumbell from "../assets/dumbbell.png";
 
 export function UserPage() {
@@ -45,15 +45,15 @@ export function UserPage() {
   const [pr, setPR] = useState("");
   const headers = Object.keys(serverUsers[0]);
 
-  const handleOnDelete = (event) => {
+  const handleOnDelete = () => {
     serverDeleteUser(name);
   };
 
-  const handleGetUser = (event) => {
+  const handleGetUser = () => {
     serverGetUsers();
   };
 
-  const handleUserHinzufuegen = (event) => {
+  const handleUserHinzufuegen = () => {
     if (!name || !gewicht || !pr) {
       alert("Bitte alle Felder ausfüllen!");
       return;

@@ -4,14 +4,30 @@ import UserAnzeige from "../components/UserAnzeige";
 import { FaSave, FaWindowClose } from "react-icons/fa";
 
 export function Dashboard() {
-  const [teilnehmer, setTeilnehmer] = useState<Array<object>>([{}]);
-  const [currentWeight, setCurrentWeight] = useState(0);
-  const [editWeight, setEditWeight] = useState(0);
-  const [selectedRow, setSelectedRow] = useState<HTMLTableRowElement>();
-  const [selectedCell, setSelectedCell] = useState<HTMLTableElement>();
+  const [teilnehmer, setTeilnehmer] = useState<Array<Teilnehmer>>([
+    {
+      Name: "",
+      Gewicht: "",
+      PR: "",
+      Versuch1: "",
+      Versuch2: "",
+      Versuch3: "",
+      Versuch4: "",
+      Versuch5: "",
+      Versuch6: "",
+      Versuch7: "",
+      Versuch8: "",
+      Versuch9: "",
+      Versuch10: "",
+    },
+  ]);
+  const [currentWeight, setCurrentWeight] = useState("0");
+  const [editWeight, setEditWeight] = useState("0");
+  //const [selectedRow, setSelectedRow] = useState<HTMLTableRowElement>();
+  //const [selectedCell, setSelectedCell] = useState<HTMLTableElement>();
   const [currentRowNumber, setCurrentRowNumber] = useState(0);
   const [runde, setRunde] = useState(1);
-  const [lastColor, setLastColor] = useState("");
+  //const [lastColor, setLastColor] = useState("");
   const [selectedUser, setSelectedUser] = useState(teilnehmer[0]);
 
   useEffect(() => {
@@ -23,6 +39,9 @@ export function Dashboard() {
 
       const table = getTable();
       const row = getRow(table);
+      if (!row) {
+        return;
+      }
       row.style.fontWeight = "bold";
     };
 
@@ -35,7 +54,7 @@ export function Dashboard() {
   const handleCellClick = (event: any) => {
     const data = event.target as HTMLTableElement;
 
-    setSelectedCell(event.target);
+    //setSelectedCell(event.target);
     console.log("Ausgewählte Zelle: " + data.innerHTML);
     data.innerHTML = editWeight.toString();
 
@@ -75,8 +94,8 @@ export function Dashboard() {
       return null;
     }
     let nextRow;
-    let elem = table.getElementsByTagName("tr");
-    let len = elem.length;
+    const elem = table.getElementsByTagName("tr");
+    const len = elem.length;
 
     if (currentRowNumber >= len - 1) {
       {
@@ -198,6 +217,22 @@ export function Dashboard() {
   const [showModal, setShowModal] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  type Teilnehmer = {
+    Name: string;
+    Gewicht: string;
+    PR: string;
+    Versuch1: string;
+    Versuch2: string;
+    Versuch3: string;
+    Versuch4: string;
+    Versuch5: string;
+    Versuch6: string;
+    Versuch7: string;
+    Versuch8: string;
+    Versuch9: string;
+    Versuch10: string;
+  };
+
   return (
     <>
       <h1 className="bg-primary-subtle p-3">
@@ -220,7 +255,7 @@ export function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {teilnehmer.map((row: any, index) => (
+              {teilnehmer.map((row: Teilnehmer, index) => (
                 <tr className="tbl" key={index} style={{ cursor: "pointer" }}>
                   <td onClick={handleCellClick}>{row.Name}</td>
                   <td onClick={handleCellClick}>{row.Gewicht}</td>
@@ -400,7 +435,7 @@ export function Dashboard() {
         </div>
 
         <div>
-          <div dangerouslySetInnerHTML={{ __html: ta }} />
+          <div dangerouslySetInnerHTML={{ __html: ta || "" }} />
         </div>
       </div>
     </>

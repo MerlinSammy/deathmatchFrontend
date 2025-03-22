@@ -1,17 +1,12 @@
 import "./App.css";
-import { useState } from "react";
-import { parse } from "papaparse";
-import UserAnzeige from "./components/UserAnzeige";
-import AthleteTable, { setLastClickedCell, setVersuchOnActiveRow } from "./components/AthleteTable";
-import Athlete from "./components/Athlete";
-import { markNextAsActive } from "./components/AthleteTable";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { UserPage } from "./pages/UserPage";
-import { MainPage } from "./pages/mainPage";
 import { Layout } from "./Layout";
 import { Dashboard } from "./pages/Dashboard";
+import { MainPage } from "./pages/MainPage";
 
 function App() {
+  /*
   const dummy = [
     { id: 1, name: "Merlin Sammetinger", pr: 260, gew: "+120" },
     { id: 2, name: "Florian Fink", pr: 310, gew: "+120" },
@@ -635,7 +630,7 @@ function App() {
         </div>
       )}
     </>
-  );
+  );*/
 
   return (
     <>
