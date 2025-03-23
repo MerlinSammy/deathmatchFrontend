@@ -2,11 +2,13 @@ import { useState } from "react";
 import dumbell from "../assets/dumbbell.png";
 
 export function UserPage() {
+  const rootURL = "https://deathmatch-backend.vercel.app/";
+  //const rootURL = "http://localhost:3000/"
   //console.log("Re-Render");
 
   const serverGetUsers = () => {
     // Simple GET request using fetch
-    fetch("http://localhost:3000/users")
+    fetch(rootURL + "users")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -21,7 +23,7 @@ export function UserPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ Name: name, Gewicht: gewicht, PR: pr }),
     };
-    fetch("http://localhost:3000/addUser", requestOptions)
+    fetch(rootURL + "addUser", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -33,7 +35,7 @@ export function UserPage() {
     console.log(userName);
 
     // Simple DELETE request with fetch
-    fetch("http://localhost:3000/deleteUser/" + userName, { method: "DELETE" }).then((data) => {
+    fetch(rootURL + "deleteUser/" + userName, { method: "DELETE" }).then((data) => {
       console.log(data);
       serverGetUsers();
     });

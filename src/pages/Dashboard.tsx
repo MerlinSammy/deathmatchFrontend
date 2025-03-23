@@ -4,6 +4,9 @@ import UserAnzeige from "../components/UserAnzeige";
 import { FaSave, FaWindowClose } from "react-icons/fa";
 
 export function Dashboard() {
+  const rootURL = "https://deathmatch-backend.vercel.app/";
+  //const rootURL = "http://localhost:3000/"
+
   const [teilnehmer, setTeilnehmer] = useState<Array<Teilnehmer>>([
     {
       Name: "",
@@ -32,7 +35,7 @@ export function Dashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/users");
+      const response = await fetch(rootURL + "users");
       const data = await response.json();
       console.log("Daten geladen:", data);
       await setTeilnehmer(data);
@@ -194,7 +197,7 @@ export function Dashboard() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ htmlString }),
     };
-    fetch("http://localhost:3000/saveTable", requestOptions)
+    fetch(rootURL + "saveTable", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -205,7 +208,7 @@ export function Dashboard() {
 
   const loadTable = () => {
     // Simple GET request using fetch
-    fetch("http://localhost:3000/loadTable")
+    fetch(rootURL + "loadTable")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
