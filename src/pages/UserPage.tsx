@@ -3,7 +3,7 @@ import dumbell from "../assets/dumbbell.png";
 
 export function UserPage() {
   const rootURL = "https://deathmatch-backend.vercel.app/";
-  //const rootURL = "http://localhost:3000/"
+  //const rootURL = "http://localhost:3000/";
   //console.log("Re-Render");
 
   const serverGetUsers = () => {
